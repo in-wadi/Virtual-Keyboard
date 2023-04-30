@@ -1,0 +1,111 @@
+body {
+  background: aliceblue;
+}
+
+.page {
+  margin: 240px auto;
+  font-family: Segoe UI, serif;
+  font-weight: 500;
+  text-align: center;
+  background: aliceblue;
+}
+
+.btn {
+  display: inline-block;
+}
+
+.btn .row {
+  clear: both;
+  width: 100%;
+  min-height: 40px;
+  margin-bottom: 8px
+}
+
+.btn .key {
+  float: left;
+  min-width: 40px;
+  min-height: 40px;
+  margin-left: 6px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  background: #4a4e57;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-radius .1s, background .1s
+}
+
+#output {
+  display: block;
+  width: 700px;
+  height: 200px;
+  margin: 0 auto 10px;
+  padding: 10px;
+  font-size: 18px;
+  color: #444
+}
+
+.off, .up {
+  display: none
+}
+
+.btn .key:hover {
+  background: #251c1c
+}
+
+.btn .backspace, .btn .capslock, .btn .shift {
+  width: 100px
+}
+
+.btn .alt,
+.btn .arrow,
+.btn .backspace,
+.btn .capslock,
+.btn .ctrl,
+.btn .del,
+.btn .enter,
+.btn .shift,
+.btn .shift-right,
+.btn .tab,
+.btn .win {
+  color: grey;
+  background-color: #2a2d36
+}
+
+.btn .tab {
+  width: 50px
+}
+
+.btn .del {
+  width: 44px
+}
+
+.btn .enter, .btn .shift-right {
+  width: 86px
+}
+
+.btn .ctrl {
+  width: 40px
+}
+
+.btn .space {
+  width: 330px
+}
+
+/*.btn sup {*/
+/*  position: absolute;*/
+/*  margin: -10px 0 0 -20px;*/
+/*  font-size: 12px*/
+/*}*/
+
+
+
+/*.down {*/
+/*  display: inherit*/
+/*}*/
+
+/*.btn .key.active {*/
+/*  background-color: #5571ee;*/
+/*  border-radius: 50px*/
+/*}*/

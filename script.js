@@ -1,4 +1,4 @@
-const Keyboard = {
+const buttons = {
   row1: [{
     keyCode: '192', name: 'Tilde', simbols: ['ё', 'Ё', '`', '~'], class: 'key',
   },
@@ -39,11 +39,11 @@ const Keyboard = {
     keyCode: '187', name: 'Plus', simbols: ['=', '+', '=', '+'], class: 'key',
   },
   {
-    keyCode: '8', name: 'Backspace', simbols: ['Backspace'], class: 'key backspace',
+    keyCode: '8', name: 'Backspace', simbols: ['Backspace', 'Backspace', 'Backspace', 'Backspace'], class: 'key backspace',
   },
   ],
   row2: [{
-    keyCode: '9', name: 'Tab', simbols: ['Tab'], class: 'key tab',
+    keyCode: '9', name: 'Tab', simbols: ['Tab', 'Tab', 'Tab', 'Tab'], class: 'key tab',
   },
   {
     keyCode: '81', name: 'KeyQ', simbols: ['й', 'Й', 'q', 'Q'], class: 'key',
@@ -85,11 +85,11 @@ const Keyboard = {
     keyCode: '220', name: 'VerticalBar', simbols: ['\\', '/', '\\', '|'], class: 'key',
   },
   {
-    keyCode: '46', name: 'Delete', simbols: ['Del'], class: 'key del',
+    keyCode: '46', name: 'Delete', simbols: ['Del', 'Del', 'Del', 'Del'], class: 'key del',
   },
   ],
   row3: [{
-    keyCode: '20', name: 'CapsLock', simbols: ['CapsLock'], class: 'key capslock',
+    keyCode: '20', name: 'CapsLock', simbols: ['CapsLock', 'CapsLock', 'CapsLock', 'CapsLock'], class: 'key capslock',
   },
   {
     keyCode: '65', name: 'KeyA', simbols: ['ф', 'Ф', 'a', 'A'], class: 'key',
@@ -125,11 +125,11 @@ const Keyboard = {
     keyCode: '222', name: 'Backslash', simbols: ['э', 'Э', '\'', '\"'], class: 'key',
   },
   {
-    keyCode: '13', name: 'Enter', simbols: ['Enter'], class: 'key enter',
+    keyCode: '13', name: 'Enter', simbols: ['Enter', 'Enter', 'Enter', 'Enter'], class: 'key enter',
   },
   ],
   row4: [{
-    keyCode: '16', name: 'ShiftLeft', simbols: ['Shift'], class: 'key shift',
+    keyCode: '16', name: 'ShiftLeft', simbols: ['Shift', 'Shift', 'Shift', 'Shift'], class: 'key shift',
   },
   {
     keyCode: '90', name: 'KeyZ', simbols: ['я', 'Я', 'z', 'Z'], class: 'key',
@@ -162,38 +162,77 @@ const Keyboard = {
     keyCode: '191', name: 'QuestionMark', simbols: ['.', ',', '/', '?'], class: 'key',
   },
   {
-    keyCode: '38', name: 'ArrowUp', simbols: ['▲'], class: 'key arrow',
+    keyCode: '38', name: 'ArrowUp', simbols: ['▲', '▲', '▲', '▲'], class: 'key arrow',
   },
   {
-    keyCode: '16', name: 'ShiftRight', simbols: ['Shift'], class: 'key shift-right',
+    keyCode: '16', name: 'ShiftRight', simbols: ['Shift', 'Shift', 'Shift', 'Shift'], class: 'key shift-right',
   },
   ],
   row5: [{
-    keyCode: '17', name: 'ControlLeft', simbols: ['Ctrl'], class: 'key ctrl',
+    keyCode: '17', name: 'ControlLeft', simbols: ['Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'], class: 'key ctrl',
   },
   {
-    keyCode: '91', name: 'Windows', simbols: ['Win'], class: 'key win',
+    keyCode: '91', name: 'Windows', simbols: ['Win', 'Win', 'Win', 'Win'], class: 'key win',
   },
   {
-    keyCode: '18', name: 'AltLeft', simbols: ['Alt'], class: 'key alt',
+    keyCode: '18', name: 'AltLeft', simbols: ['Alt', 'Alt', 'Alt', 'Alt'], class: 'key alt',
   },
   {
-    keyCode: '32', name: 'Space', simbols: [' '], class: 'key space',
+    keyCode: '32', name: 'Space', simbols: [' ', ' ', ' ', ' '], class: 'key space',
   },
   {
-    keyCode: '18', name: 'AltRight', simbols: ['Alt'], class: 'key alt',
+    keyCode: '18', name: 'AltRight', simbols: ['Alt', 'Alt', 'Alt', 'Alt'], class: 'key alt',
   },
   {
-    keyCode: '37', name: 'ArrowLeft', simbols: ['◄'], class: 'key arrow',
+    keyCode: '17', name: 'ControlRight', simbols: ['Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'], class: 'key ctrl',
   },
   {
-    keyCode: '40', name: 'ArrowDown', simbols: ['▼'], class: 'key arrow',
+    keyCode: '37', name: 'ArrowLeft', simbols: ['◄', '◄', '◄', '◄'], class: 'key arrow',
   },
   {
-    keyCode: '39', name: 'ArrowRight', simbols: ['►'], class: 'key arrow',
+    keyCode: '40', name: 'ArrowDown', simbols: ['▼', '▼', '▼', '▼'], class: 'key arrow',
   },
   {
-    keyCode: '17', name: 'ControlRight', simbols: ['Ctrl'], class: 'key ctrl',
+    keyCode: '39', name: 'ArrowRight', simbols: ['►', '►', '►', '►'], class: 'key arrow',
   },
   ],
 };
+
+function getKeyboard() {
+  const lang = localStorage.getItem('lang');
+  let on = ' on';
+  let off = ' off';
+  if (lang == 'ru') {
+    on = ' off';
+    off = ' on';
+  }
+  const wrap = document.createElement('div');
+  const input = document.createElement('textarea');
+  const inner = document.createElement('div');
+  wrap.className = 'page';
+  document.body.append(wrap);
+  input.setAttribute('id', 'output');
+  input.setAttribute('cols', 80);
+  input.setAttribute('rows', 4);
+  wrap.appendChild(input);
+  inner.className = 'btn';
+  wrap.appendChild(inner);
+
+  for (const line in buttons) {
+    const row = document.createElement('div');
+    row.className = 'row';
+    inner.appendChild(row);
+
+    for (let i = 0; i < buttons[line].length; i++) {
+      const container = document.createElement('div');
+      container.className = buttons[line][i].class;
+      container.innerHTML = `<span class="${buttons[line][i].name}${off}">
+<span class="case down">${buttons[line][i].simbols[0]}</span>
+<span class="case up">${buttons[line][i].simbols[1]}</span></span>
+<span class="${buttons[line][i].name}${on}"><span class="case down">${buttons[line][i].simbols[2]}</span>
+<span class="case up">${buttons[line][i].simbols[3]}</span></span>`;
+      row.appendChild(container);
+    }
+  }
+}
+getKeyboard();
