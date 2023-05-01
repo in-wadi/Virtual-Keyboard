@@ -22,31 +22,32 @@ body {
 }
 
 .btn .key {
+  color: #fff;
+  background: #4a4e57;
+  border-radius: 5px;
   float: left;
   min-width: 40px;
   min-height: 40px;
   margin-left: 6px;
   line-height: 40px;
   text-align: center;
-  color: #fff;
-  background: #4a4e57;
-  border-radius: 5px;
   cursor: pointer;
   user-select: none;
   transition: border-radius .1s, background .1s
 }
 
 #output {
-  display: block;
-  width: 700px;
+  width: 680px;
   height: 200px;
   margin: 0 auto 10px;
+  display: block;
   padding: 10px;
   font-size: 18px;
-  color: #444
+  color: #2f1e1e
 }
 
-.off, .up {
+.off,
+.up {
   display: none
 }
 
@@ -93,19 +94,16 @@ body {
   width: 330px
 }
 
-/*.btn sup {*/
-/*  position: absolute;*/
-/*  margin: -10px 0 0 -20px;*/
-/*  font-size: 12px*/
-/*}*/
+.btn sup {
+  position: absolute;
+  margin: -10px 0 0 -20px;
+  font-size: 12px
+}
 
+.down {
+  display: inherit
+}
 
-
-/*.down {*/
-/*  display: inherit*/
-/*}*/
-
-/*.btn .key.active {*/
-/*  background-color: #5571ee;*/
-/*  border-radius: 50px*/
-/*}*/
+.btn .key.active {
+  background-color: #7e7f85;
+}

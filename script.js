@@ -198,7 +198,7 @@ const buttons = {
   ],
 };
 
-function getKeyboard() {
+function getbuttons() {
   const lang = localStorage.getItem('lang');
   let on = ' on';
   let off = ' off';
@@ -235,4 +235,149 @@ function getKeyboard() {
     }
   }
 }
-getKeyboard();
+getbuttons();
+
+const pressed = new Set();
+let capslock = false;
+
+window.addEventListener('keydown', (event) => {
+  event = event || window.event;
+  event.preventDefault();
+  let el;
+  let key;
+  const textarea = document.getElementById('output');
+  let lang = localStorage.getItem('lang');
+  let divs;
+  pressed.add(event.key);
+  if (pressed.has('Shift') && pressed.has('Alt')) {
+    lang = (lang == 'en') ? 'ru' : 'en';
+    localStorage.setItem('lang', lang);
+    const divs = document.getElementsByClassName('key');
+    for (const cell of divs) {
+      const { className } = cell.firstChild;
+      cell.firstChild.className = cell.lastChild.className;
+      cell.lastChild.className = className;
+    }
+  }
+  switch (event.key) {
+    case 'Alt':
+    case 'Windows':
+    case 'Control':
+    case 'ArrowUp':
+    case 'ArrowRight':
+    case 'ArrowDown':
+    case 'ArrowLeft':
+      break;
+    case 'Delete':
+
+      break;
+    case 'CapsLock':
+      divs = document.getElementsByClassName('case');
+      for (const cell of divs) {
+        cell.className = (cell.className == 'case up') ? 'case down' : 'case up';
+      }
+      capslock = !capslock;
+      break;
+    case 'Tab':
+      textarea.value += '    ';
+      break;
+    case 'Backspace':
+      textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+      break;
+    case ' ':
+      textarea.value += ' ';
+      break;
+    case 'Enter':
+      textarea.value += '\n';
+      break;
+    case 'Shift':
+      divs = document.getElementsByClassName('case');
+      for (const cell of divs) {
+        cell.className = (cell.className == 'case up') ? 'case down' : 'case up';
+      }
+      break;
+    default:
+      let strTextArea;
+      for (el in buttons) {
+        for (let i = 0; i < buttons[el].length; i++) {
+          if (event.keyCode == buttons[el][i].keyCode) {
+            if ((!pressed.has('Shift') && capslock) || (pressed.has('Shift') && !capslock)) {
+              strTextArea = (lang == 'en') ? buttons[el][i].simbols[3] : buttons[el][i].simbols[1];
+            } else if ((!pressed.has('Shift') && !capslock) || (pressed.has('Shift') && capslock)) {
+              strTextArea = (lang == 'en') ? buttons[el][i].simbols[2] : buttons[el][i].simbols[0];
+            }
+            textarea.value += strTextArea;
+          }
+        }
+      }
+      break;
+  }
+
+  key = document.getElementsByClassName(event.code);
+  if (key[0].parentNode.className.indexOf(' active') == -1) {
+    const str = `${key[0].parentNode.className} active`;
+    key[0].parentNode.className = str;
+  }
+});
+
+window.addEventListener('keyup', (event) => {
+  event = event || window.event;
+  event.preventDefault();
+  let el;
+  let key;
+  const textarea = document.getElementById('output');
+  for (el in buttons) {
+    for (let i = 0; i < buttons[el].length; i++) {
+    }
+  }
+  switch (event.key) {
+    case 'Shift':
+      const divs = document.getElementsByClassName('case');
+      for (const cell of divs) {
+        cell.className = (cell.className == 'case up') ? 'case down' : 'case up';
+      }
+      break;
+  }
+
+  key = document.getElementsByClassName(event.code);
+  const str = key[0].parentNode.className;
+  key[0].parentNode.className = str.replace(' active', '');
+  if (event.key !== 'Shift' && pressed.has('Shift')) {
+    pressed.clear();
+    pressed.add('Shift');
+  } else {
+    pressed.clear();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  event.preventDefault();
+  const textarea = document.getElementById('output');
+  if ((event.target.className == 'case down') || (event.target.className.indexOf('key') == 0 && event.target.className.indexOf('buttons') == -1)) {
+    switch (event.target.innerText) {
+      case 'Enter':
+        textarea.value += '\n';
+        break;
+      case 'Backspace':
+        textarea.value = textarea.value.slice(0, -1);
+        break;
+      case '':
+        textarea.value += ' ';
+        break;
+      case 'Del':
+      case 'Shift':
+      case 'Ctrl':
+      case 'Alt':
+      case '◄':
+      case '▼':
+      case '►':
+      case '▲':
+      case 'Win':
+      case 'CapsLock':
+      case 'Tab':
+        break;
+      default:
+        textarea.value += event.target.innerText;
+    }
+  }
+});
