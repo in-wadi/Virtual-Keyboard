@@ -1,12 +1,12 @@
 body {
   background: aliceblue;
+  font-family: Segoe UI, serif;
+  font-weight: 500;
+  text-align: center;
 }
 
 .page {
   margin: 240px auto;
-  font-family: Segoe UI, serif;
-  font-weight: 500;
-  text-align: center;
   background: aliceblue;
 }
 
@@ -55,8 +55,13 @@ body {
   background: #251c1c
 }
 
-.btn .backspace, .btn .capslock, .btn .shift {
+.btn .backspace,
+.btn .capslock {
   width: 100px
+}
+
+.btn .shift {
+  width: 146px
 }
 
 .btn .alt,
@@ -70,7 +75,7 @@ body {
 .btn .shift-right,
 .btn .tab,
 .btn .win {
-  color: grey;
+  color: #ffffff;
   background-color: #2a2d36
 }
 
@@ -82,7 +87,7 @@ body {
   width: 44px
 }
 
-.btn .enter, .btn .shift-right {
+.btn .enter {
   width: 86px
 }
 
