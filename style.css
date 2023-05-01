@@ -1,0 +1,114 @@
+body {
+  background: aliceblue;
+  font-family: Segoe UI, serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.page {
+  margin: 240px auto;
+  background: aliceblue;
+}
+
+.btn {
+  display: inline-block;
+}
+
+.btn .row {
+  clear: both;
+  width: 100%;
+  min-height: 40px;
+  margin-bottom: 8px
+}
+
+.btn .key {
+  color: #fff;
+  background: #4a4e57;
+  border-radius: 5px;
+  float: left;
+  min-width: 40px;
+  min-height: 40px;
+  margin-left: 6px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: border-radius .1s, background .1s
+}
+
+#output {
+  width: 680px;
+  height: 200px;
+  margin: 0 auto 10px;
+  display: block;
+  padding: 10px;
+  font-size: 18px;
+  color: #2f1e1e
+}
+
+.off,
+.up {
+  display: none
+}
+
+.btn .key:hover {
+  background: #251c1c
+}
+
+.btn .backspace,
+.btn .capslock {
+  width: 100px
+}
+
+.btn .shift {
+  width: 146px
+}
+
+.btn .alt,
+.btn .arrow,
+.btn .backspace,
+.btn .capslock,
+.btn .ctrl,
+.btn .del,
+.btn .enter,
+.btn .shift,
+.btn .shift-right,
+.btn .tab,
+.btn .win {
+  color: #ffffff;
+  background-color: #2a2d36
+}
+
+.btn .tab {
+  width: 50px
+}
+
+.btn .del {
+  width: 44px
+}
+
+.btn .enter {
+  width: 86px
+}
+
+.btn .ctrl {
+  width: 40px
+}
+
+.btn .space {
+  width: 330px
+}
+
+.btn sup {
+  position: absolute;
+  margin: -10px 0 0 -20px;
+  font-size: 12px
+}
+
+.down {
+  display: inherit
+}
+
+.btn .key.active {
+  background-color: #7e7f85;
+}
